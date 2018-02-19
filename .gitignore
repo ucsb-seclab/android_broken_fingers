@@ -1,0 +1,6 @@
+*.class
+out/
+SootAnalysis.jar
+postprocessing/.idea/*
+
+/bin/
