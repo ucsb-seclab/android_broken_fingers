@@ -15,6 +15,10 @@ def get_res(fp):
     return res
 
 
+def clean_strings(tstr, sep=" "):
+    return sep.join(map(repr, tstr))
+
+
 def compute_outcome(res):
     features = res['features']
     fnames = [f['name'] for f in features]
@@ -47,17 +51,17 @@ def compute_outcome(res):
 def main(fname, fp):
     res = get_res(fp)
     if res is None:
-        print "=" * 10, "FINAL_RESULT", fname, fname, os.path.basename(fname).replace(".apk", "").replace(".txt",""), "ERROR"
+        print "=" * 10, "FINAL_RESULT", clean_strings([fname, fname, os.path.basename(fname).replace(".apk", "").replace(".txt","")]), "ERROR"
         return
 
     for f in res['features']:
         sslice = f['slice'].split("\n")[0]
-        print "--->", res['meta']['pname'], f['name'], f['value'], f['result'], "location:", f['location'], "extra:", repr(f['extra']), "sslice:", sslice
+        print "--->", clean_strings([res['meta']['pname'], f['name'], f['value'], f['result'], "location:", f['location'], "extra:", repr(f['extra']), "sslice:", sslice])
 
     fres = compute_outcome(res)
 
-    print res['meta']
-    print "=" * 10, "FINAL_RESULT", fname, res['meta']['fname'], res['meta']['pname'], fres
+    print repr(res['meta'])
+    print "=" * 10, "FINAL_RESULT", clean_strings([fname, res['meta']['fname'], res['meta']['pname']]), fres
 
 
 if __name__ == "__main__":
