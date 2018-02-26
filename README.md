@@ -37,5 +37,10 @@ java -jar SootAnalysis.jar fp1 <android_sdk_platforms> <apk> | ./postprocessing.
 This folder is typically somethig like `HOME/Android/Sdk/platforms/` and it contains sub-folders like `android-X`, where `X` is a different Android SDK version.
 Analyzing an APK targeting version `X` requires you to have the `android-X` folder in `<android_sdk_platforms>`.
 
-Running the command line above will print one of these three values: `WEAK`, `DECRYPTION`, or `SIGN`.
+Running the command line above will print one of these values: `ERROR`, `NOT_USED`, `WEAK`, `DECRYPTION`, or `SIGN`.
+
+# Test
+The folder `public_tests` contains sample APKs.
+
+They should be classified as indicated by their names.
 
